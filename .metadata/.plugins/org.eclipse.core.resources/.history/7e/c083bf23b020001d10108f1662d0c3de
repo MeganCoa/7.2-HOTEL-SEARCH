@@ -1,0 +1,5 @@
+package co.grandcircus72.HOTEL.SEARCH.controllers;
+
+public class HomeController {
+
+}

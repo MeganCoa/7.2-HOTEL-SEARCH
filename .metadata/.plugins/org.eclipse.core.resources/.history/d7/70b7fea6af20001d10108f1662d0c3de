@@ -1,0 +1,8 @@
+package co.grandcircus72.HOTEL.SEARCH.models;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("hotels")
+public class Hotels {
+
+}

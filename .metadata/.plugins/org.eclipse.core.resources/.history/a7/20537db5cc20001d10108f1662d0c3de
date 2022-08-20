@@ -1,0 +1,41 @@
+package co.grandcircus72.HOTEL.SEARCH.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import co.grandcircus72.HOTEL.SEARCH.HotelRepository;
+import co.grandcircus72.HOTEL.SEARCH.models.Hotels;
+
+@Controller
+public class HomeController {
+	@Autowired
+	private HotelRepository repo;
+
+	@RequestMapping("/")
+	public String home(Model model) {
+		List<Hotels> hotels = repo.findAll();
+		model.addAttribute("hotels", hotels);
+		return "index";
+	}
+
+	@RequestMapping("/results")
+	public String results(Model model, @ModelAttribute("city") String city) {
+		List<Hotels> hotels = new ArrayList<>();
+		List<String> names = new ArrayList<>();
+		for (Hotels temp : repo.findAll()) {
+			if (city.equals(temp.getCity())) {
+				hotels.add(temp);
+				names.add(temp.getName());
+			}
+		}
+		model.addAttribute("hotels", hotels);
+		model.addAttribute("names", names);
+		return "results";
+	}
+}

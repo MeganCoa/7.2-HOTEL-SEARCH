@@ -1,0 +1,6 @@
+package co.grandcircus72.HOTEL.SEARCH.models;
+
+@Document("hotels")
+public class Hotels {
+
+}
